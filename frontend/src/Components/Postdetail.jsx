@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useSubmit } from "react-router-dom";
 import { ClockIcon, ArrowLeftIcon } from "@heroicons/react/24/solid";
 function Postdetail(props) {
+  const submitdelete = useSubmit();
+  const deletepost = () => {
+    const confirmbox = window.confirm("Are u sure to delete this post");
+    if (confirmbox) {
+      submitdelete(null, {
+        method: "delete",
+      });
+    }
+  };
+
   return (
     <section className="detail">
       <div className="deHead">
@@ -17,6 +27,14 @@ function Postdetail(props) {
       </div>
       <img src={props.post.image} alt="" />
       <p>Description - {props.post.description}</p>
+      <div className="footer">
+        <Link to={"edit-post"}>
+          <p className="btn sm">Edit</p>
+        </Link>
+        <p className="btn sm" onClick={deletepost}>
+          Delete
+        </p>
+      </div>
     </section>
   );
 }

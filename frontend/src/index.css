@@ -116,10 +116,10 @@ a {
   }
 }
 .btn {
-  margin-right: 20px;
+  margin-right: 10px;
   color: rgb(18, 19, 19);
   text-decoration: none;
-  width: 70px;
+  width: 100px;
   padding: 10px;
   font-size: 20px;
   margin-top: 20px;
@@ -134,5 +134,28 @@ a {
   background-color: rgb(58, 64, 64);
 }
 .btn:active {
+  background-color: aqua;
+}
+.sm {
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+}
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.errorpage {
+  text-align: center;
+}
+.erroricon {
+  width: 100px;
+  height: 100px;
+}
+.errtohome {
+  padding: 10px;
+}
+.errtohome:hover {
   background-color: aqua;
 }

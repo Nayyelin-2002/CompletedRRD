@@ -1,13 +1,19 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Details, { loader as loaderdata } from "./Pages/Details";
+import Details, { loader as loaderDetaildata } from "./Pages/Details";
 import Main from "./Pages/Main";
 import Post, { loader as postsloader } from "./Pages/Post";
-import Create, { action as postcreateaction } from "./Layouts/Create";
+import { action as postcreateaction } from "./Components/Postform";
+import { action as postupdateaction } from "./Components/Postform";
+import Edit from "./Pages/Edit";
+import { action as deletepostaction } from "./Pages/Details";
+import Error from "./Pages/Error";
+import Create from "./Layouts/Create";
 function App() {
   const routerX = createBrowserRouter([
     {
       path: "/",
       element: <Main />,
+      errorElement: <Error />,
       children: [
         {
           index: true,
@@ -20,9 +26,21 @@ function App() {
           action: postcreateaction,
         },
         {
-          path: "/post-details/:id",
-          element: <Details />,
-          loader: loaderdata,
+          path: ":id",
+          id: "postdetail", //kyite tr  payy
+          loader: loaderDetaildata,
+          children: [
+            {
+              index: true,
+              element: <Details />,
+              action: deletepostaction,
+            },
+            {
+              path: "edit-post",
+              element: <Edit />,
+              action: postupdateaction,
+            },
+          ],
         },
       ],
     },
