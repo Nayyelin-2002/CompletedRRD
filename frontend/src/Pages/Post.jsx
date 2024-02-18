@@ -4,13 +4,13 @@ import PostItems from "../Components/PostItems";
 
 function Post() {
   const posts = useLoaderData(); //ouk ka loader htl ka data ko pyn khw
-  console.log(posts); //array  m loh loop pek pee htoke pyy ya ml
+  // console.log(posts); //array  m loh loop pek pee htoke pyy ya ml
 
   return (
     <>
       {posts.length > 0 &&
         posts.map((post) => {
-          return <PostItems posts={post} />;
+          return <PostItems posts={post} key={post.id} />;
         })}
     </>
   );

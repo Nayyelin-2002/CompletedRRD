@@ -1,4 +1,4 @@
-import { Link, useSubmit } from "react-router-dom";
+import { Link, useRouteLoaderData, useSubmit } from "react-router-dom";
 import { ClockIcon, ArrowLeftIcon } from "@heroicons/react/24/solid";
 function Postdetail(props) {
   const submitdelete = useSubmit();
@@ -10,7 +10,7 @@ function Postdetail(props) {
       });
     }
   };
-
+  const isToken = useRouteLoaderData("root");
   return (
     <section className="detail">
       <div className="deHead">
@@ -27,14 +27,16 @@ function Postdetail(props) {
       </div>
       <img src={props.post.image} alt="" />
       <p>Description - {props.post.description}</p>
-      <div className="footer">
-        <Link to={"edit-post"}>
-          <p className="btn sm">Edit</p>
-        </Link>
-        <p className="btn sm" onClick={deletepost}>
-          Delete
-        </p>
-      </div>
+      {isToken && (
+        <div className="footer">
+          <Link to={"edit-post"}>
+            <p className="btn sm">Edit</p>
+          </Link>
+          <p className="btn sm" onClick={deletepost}>
+            Delete
+          </p>
+        </div>
+      )}
     </section>
   );
 }

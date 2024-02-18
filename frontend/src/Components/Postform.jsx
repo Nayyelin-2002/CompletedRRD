@@ -3,9 +3,10 @@ import { Form, redirect } from "react-router-dom";
 import { Link, useActionData } from "react-router-dom";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import uuid from "react-uuid";
+import { getToken } from "../util/getToken";
 function Postform({ header, btn, olddata, method }) {
   const data = useActionData();
-  console.log(method);
+  // console.log(method);
   return (
     <section className="formsection">
       <p>{header}</p>
@@ -68,6 +69,7 @@ function Postform({ header, btn, olddata, method }) {
 export default Postform;
 
 export const action = async ({ request, params }) => {
+  const token = getToken();
   const data = await request.formData();
   const postdatas = {
     id: uuid(),
@@ -87,6 +89,7 @@ export const action = async ({ request, params }) => {
     method: method,
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
     },
     body: JSON.stringify(postdatas),
   });
