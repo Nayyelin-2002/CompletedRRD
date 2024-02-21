@@ -35,7 +35,7 @@
 import { redirect, useRouteLoaderData } from "react-router-dom";
 import Postdetail from "../Components/Postdetail";
 import { getToken } from "../util/getToken";
-
+import env from "react-dotenv";
 const Details = () => {
   const post = useRouteLoaderData("postdetail");
 
@@ -49,7 +49,7 @@ const Details = () => {
 export default Details;
 
 export const loader = async ({ request, params }) => {
-  const response = await fetch(`http://localhost:8080/posts/${params.id}`);
+  const response = await fetch(`${env.API_URL}/posts/${params.id}`);
 
   if (!response.ok) {
   } else {
@@ -60,7 +60,7 @@ export const loader = async ({ request, params }) => {
 
 export const action = async ({ request, params }) => {
   const token = getToken();
-  const response = await fetch(`http://localhost:8080/posts/${params.id}`, {
+  const response = await fetch(`${env.API_URL}/posts/${params.id}`, {
     method: request.method,
     headers: {
       Authorization: "Bearer " + token,

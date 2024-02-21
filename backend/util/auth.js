@@ -3,7 +3,7 @@ const { compare } = require("bcryptjs");
 const { NotAuthError } = require("./errors");
 const dotend = require("dotenv");
 dotend.config();
-const KEY = process.env.JWT_KEY;
+const KEY = process.env.REACT_APP_DOMAIN;
 
 function createJSONToken(email) {
   console.log(KEY);

@@ -4,6 +4,7 @@ import { Link, useActionData } from "react-router-dom";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import uuid from "react-uuid";
 import { getToken } from "../util/getToken";
+import env from "react-dotenv";
 function Postform({ header, btn, olddata, method }) {
   const data = useActionData();
   // console.log(method);
@@ -78,12 +79,12 @@ export const action = async ({ request, params }) => {
     description: data.get("description"),
     date: data.get("date"),
   };
-  let url = "http://localhost:8080/posts";
+  let url = `${env.API_URL}/posts`;
   const method = request.method;
 
   if (method === "PATCH") {
     const id = params.id;
-    url = `http://localhost:8080/posts/${id}`;
+    url = `${env.API_URL}/posts/${id}`;
   }
   const response = await fetch(url, {
     method: method,

@@ -1,7 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import PostItems from "../Components/PostItems";
-
+import env from "react-dotenv";
 function Post() {
   const posts = useLoaderData(); //ouk ka loader htl ka data ko pyn khw
   // console.log(posts); //array  m loh loop pek pee htoke pyy ya ml
@@ -19,7 +19,7 @@ function Post() {
 export default Post;
 
 export const loader = async () => {
-  const response = await fetch("http://localhost:8080/posts");
+  const response = await fetch(`${env.API_URL}/posts`);
   if (!response.ok) {
     throw new Error("Loading error");
   } else {

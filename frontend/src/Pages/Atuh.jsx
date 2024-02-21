@@ -1,7 +1,7 @@
 import React from "react";
 import Authform from "../Components/Authform";
 import { redirect } from "react-router-dom";
-
+import env from "react-dotenv";
 const Auth = () => {
   return <Authform />;
 };
@@ -22,7 +22,7 @@ export const action = async ({ request }) => {
     password: data.get("password"),
   };
 
-  const response = await fetch(`http://localhost:8080/${mode}`, {
+  const response = await fetch(`${env.API_URL}/${mode}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
